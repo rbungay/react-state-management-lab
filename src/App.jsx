@@ -105,7 +105,7 @@ const App = () => {
       <p>
         {team.length > 0 ? "My Zombie Fighters!" : "Pick someone stupid"}
         <br />
-        <h2>{money < 10 ? "You are broke" : ""}</h2>
+        {money < 10 ? "You are broke" : ""}
         <br />
         {team.length > 0
           ? `Total Stats: 
