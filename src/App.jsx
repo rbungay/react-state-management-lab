@@ -11,74 +11,95 @@ const App = () => {
       price: 12,
       strength: 6,
       agility: 4,
-      img: "https://via.placeholder.com/150/92c952",
+      img: "https://img.freepik.com/premium-vector/zombie-apocalypse-survivor-vector-white-background_889056-55741.jpg",
     },
     {
       name: "Scavenger",
       price: 10,
       strength: 5,
       agility: 5,
-      img: "https://via.placeholder.com/150/771796",
+      img: "https://img.freepik.com/premium-vector/zombie-apocalypse-survivor-vector-white-background_889056-55741.jpg",
     },
     {
       name: "Shadow",
       price: 18,
       strength: 7,
       agility: 8,
-      img: "https://via.placeholder.com/150/24f355",
+      img: "https://img.freepik.com/premium-vector/zombie-apocalypse-survivor-vector-white-background_889056-55741.jpg",
     },
     {
       name: "Tracker",
       price: 14,
       strength: 7,
       agility: 6,
-      img: "https://via.placeholder.com/150/d32776",
+      img: "https://img.freepik.com/premium-vector/zombie-apocalypse-survivor-vector-white-background_889056-55741.jpg",
     },
     {
       name: "Sharpshooter",
       price: 20,
       strength: 6,
       agility: 8,
-      img: "https://via.placeholder.com/150/1ee8a4",
+      img: "https://img.freepik.com/premium-vector/zombie-apocalypse-survivor-vector-white-background_889056-55741.jpg",
     },
     {
       name: "Medic",
       price: 15,
       strength: 5,
       agility: 7,
-      img: "https://via.placeholder.com/150/66b7d2",
+      img: "https://img.freepik.com/premium-vector/zombie-apocalypse-survivor-vector-white-background_889056-55741.jpg",
     },
     {
       name: "Engineer",
       price: 16,
       strength: 6,
       agility: 5,
-      img: "https://via.placeholder.com/150/56acb2",
+      img: "https://img.freepik.com/premium-vector/zombie-apocalypse-survivor-vector-white-background_889056-55741.jpg",
     },
     {
       name: "Brawler",
       price: 11,
       strength: 8,
       agility: 3,
-      img: "https://via.placeholder.com/150/8985dc",
+      img: "https://img.freepik.com/premium-vector/zombie-apocalypse-survivor-vector-white-background_889056-55741.jpg",
     },
     {
       name: "Infiltrator",
       price: 17,
       strength: 5,
       agility: 9,
-      img: "https://via.placeholder.com/150/392537",
+      img: "https://img.freepik.com/premium-vector/zombie-apocalypse-survivor-vector-white-background_889056-55741.jpg",
     },
     {
       name: "Leader",
       price: 22,
       strength: 7,
       agility: 6,
-      img: "https://via.placeholder.com/150/602b9e",
+      img: "https://img.freepik.com/premium-vector/zombie-apocalypse-survivor-vector-white-background_889056-55741.jpg",
     },
   ]);
 
-  return <h1>Hello world!</h1>;
+  return (
+    <>
+      <h1>Zombie Fighters!</h1>
+      <h2>Current Money: {money}</h2>
+      <ul>
+        {zombieFighters.map((fighter, index) => (
+          <li key={index}>
+            <img
+              src={fighter.img}
+              alt={fighter.name}
+              style={{ width: "100px", height: "100px" }}
+            />
+            <h3> {fighter.name}</h3>
+            Price: {fighter.price} <br />
+            Strength: {fighter.strength} <br />
+            Agility: {fighter.agility} <br />
+            <button>Add</button>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
 };
 
 export default App;
