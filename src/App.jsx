@@ -78,10 +78,55 @@ const App = () => {
     },
   ]);
 
+  const handleAddFighter = (fighter) => {
+    if (money >= fighter.price) {
+      setTeam([...team, fighter]);
+      setMoney(money - fighter.price);
+    } else {
+      console.log("You are broke");
+    }
+  };
+
+  const totalStats = team.reduce(
+    (totals, fighter) => {
+      totals.strength += fighter.strength;
+      totals.agility += fighter.agility;
+      return totals;
+    },
+    { strength: 0, agility: 0 }
+  );
+
   return (
     <>
       <h1>Zombie Fighters!</h1>
       <h2>Current Money: {money}</h2>
+      <p>
+        {team.length > 0 ? "My Zombie Fighters!" : "Pick someone stupid"}
+        <br />
+        <h2>{money < 10 ? "You are broke" : ""}</h2>
+        <br />
+        {team.length > 0
+          ? `Total Stats: 
+          Strength: ${totalStats.strength}
+          Agility: ${totalStats.agility}`
+          : ""}
+      </p>
+      <ul>
+        {team.map((member, index) => (
+          <li key={index}>
+            <img
+              src={member.img}
+              alt={member.name}
+              style={{ width: "100px", height: "100px" }}
+            />
+            <h3> {member.name}</h3>
+            Price: {member.price} <br />
+            Strength: {member.strength} <br />
+            Agility: {member.agility}
+          </li>
+        ))}
+      </ul>
+
       <ul>
         {zombieFighters.map((fighter, index) => (
           <li key={index}>
@@ -94,7 +139,7 @@ const App = () => {
             Price: {fighter.price} <br />
             Strength: {fighter.strength} <br />
             Agility: {fighter.agility} <br />
-            <button>Add</button>
+            <button onClick={() => handleAddFighter(fighter)}>Add</button>
           </li>
         ))}
       </ul>
