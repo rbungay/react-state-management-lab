@@ -5,6 +5,8 @@ import { useState } from "react";
 const App = () => {
   const [team, setTeam] = useState([]);
   const [money, setMoney] = useState(100);
+  const [totalStrength, setTotalStrength] = useState(0);
+  const [totalAgility, setTotalAgility] = useState(0);
   const [zombieFighters, setFighter] = useState([
     {
       name: "Survivor",
@@ -82,19 +84,19 @@ const App = () => {
     if (money >= fighter.price) {
       setTeam([...team, fighter]);
       setMoney(money - fighter.price);
+      setTotalStrength(totalStrength + fighter.strength);
+      setTotalAgility(totalAgility + fighter.agility);
     } else {
       console.log("You are broke");
     }
   };
 
-  const totalStats = team.reduce(
-    (totals, fighter) => {
-      totals.strength += fighter.strength;
-      totals.agility += fighter.agility;
-      return totals;
-    },
-    { strength: 0, agility: 0 }
-  );
+  const handleRemoveFighter = (fighter, i) => {
+    setMoney(money + fighter.price);
+    setTotalStrength(totalStrength - fighter.strength);
+    setTotalAgility(totalAgility - fighter.agility);
+    setTeam(team.filter((member, index) => index !== i));
+  };
 
   return (
     <>
@@ -107,8 +109,8 @@ const App = () => {
         <br />
         {team.length > 0
           ? `Total Stats: 
-          Strength: ${totalStats.strength}
-          Agility: ${totalStats.agility}`
+          Strength: ${totalStrength}
+          Agility: ${totalAgility}`
           : ""}
       </p>
       <ul>
@@ -123,6 +125,9 @@ const App = () => {
             Price: {member.price} <br />
             Strength: {member.strength} <br />
             Agility: {member.agility}
+            <button onClick={() => handleRemoveFighter(member, index)}>
+              Remove
+            </button>
           </li>
         ))}
       </ul>
